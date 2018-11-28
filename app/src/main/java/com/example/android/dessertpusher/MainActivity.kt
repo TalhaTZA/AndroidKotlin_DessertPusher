@@ -13,6 +13,8 @@ import com.example.android.dessertpusher.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), LifecycleObserver {
 
+    private val KEY_REVENUE = "key_revenue"
+
     private var revenue = 0
     private var dessertsSold = 0
 
@@ -57,6 +59,11 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
             onDessertClicked()
         }
 
+
+        if (savedInstanceState != null) {
+            revenue = savedInstanceState.getInt(KEY_REVENUE, 0)
+        }
+
         // Set the TextViews to the right values
         binding.revenue = revenue
         binding.amountSold = dessertsSold
@@ -78,6 +85,14 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         //mDessertTimer.stopTimer()
     }
 
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putInt(KEY_REVENUE,revenue)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+    }
 
 
     /**
