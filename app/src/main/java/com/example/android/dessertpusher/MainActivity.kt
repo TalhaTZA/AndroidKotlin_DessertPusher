@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
 
     // Contains all the views
     private lateinit var binding: ActivityMainBinding
+    private lateinit var mDessertTimer: DessertTimer
 
     /** Dessert Data **/
 
@@ -62,7 +63,22 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
 
         // Make sure the correct dessert is showing
         binding.dessertButton.setImageResource(currentDessert.imageId)
+
+        mDessertTimer= DessertTimer(this.lifecycle)
+
     }
+
+    override fun onStart() {
+        super.onStart()
+        //mDessertTimer.startTimer()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        //mDessertTimer.stopTimer()
+    }
+
+
 
     /**
      * Updates the score when the dessert is clicked. Possibly shows a new dessert.
